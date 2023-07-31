@@ -10,19 +10,20 @@ img2=imresize(img2, [500, 500]);
 % Display image
 x=zeros(500,500,1);
 imshow(img);
-alpha=1;
+alpha=128;
 inalpha=256-alpha;
-for i=100:500
-    for j=100:500
+for i=1:500
+    for j=1:500
         for k=1:3
         a=img(i,j,k);
         b=img2(i,j,k);
         i
-        j
-        
-        r1=cast(eightxeight(a,1),'uint16');
-        
-        img(i,j,k)=r1;
+        j        
+        r1=cast(eightxeightapp(a,round(alpha/256)),'uint16');
+        r2=cast(eightxeightapp(b,round(inalpha/256)),'uint16');
+        img(i,j,k)=r1+(r2);
         end
     end
 end
+
+imshow(img);
